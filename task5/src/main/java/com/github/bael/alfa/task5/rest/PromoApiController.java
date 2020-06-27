@@ -2,6 +2,7 @@ package com.github.bael.alfa.task5.rest;
 
 import com.github.bael.alfa.task5.api.PromoApi;
 import com.github.bael.alfa.task5.domain.PromoCalculator;
+import com.github.bael.alfa.task5.domain.PromoModel;
 import com.github.bael.alfa.task5.model.PromoMatrix;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
@@ -44,7 +45,9 @@ public class PromoApiController implements PromoApi {
 
     public ResponseEntity<Void> setMatrix(@ApiParam(value = "Матрица промо-механик" ,required=true )  @Valid @RequestBody PromoMatrix body) {
         String accept = request.getHeader("Accept");
-        promoCalculator.reload(body);
+        JsonPromoMatrixTransformer transformer = new JsonPromoMatrixTransformer();
+        PromoModel model = transformer.convert(body);
+        promoCalculator.reload(model);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
