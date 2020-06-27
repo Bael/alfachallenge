@@ -1,0 +1,7 @@
+{
+
+  "basePackage":"com.github.bael.alfa.task5",
+  "apiPackage" : "com.github.bael.alfa.task5.api",
+  "modelPackage" : "com.github.bael.alfa.task5.model"
+
+}
